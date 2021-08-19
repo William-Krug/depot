@@ -1,0 +1,28 @@
+<% if notice %>
+  <aside id="notice"><%= notice %></aside>
+<% end %>
+
+<h1>Your Pragmatic Catalog</h1>
+
+<ul class="catalog">
+  <%# Display all products in the catalog %>
+  <% @products.each do |product| %>
+    <li>
+      <%# Product Image %>
+      <%= image_tag(product.image_url) %>
+
+      <%# Product Title %>
+      <h2><%= product.title %></h2>
+
+      <%# Product Description %>
+      <p>
+        <%= sanitize(product.description) %>
+      </p>
+
+      <%# Product Price %>
+      <div class="price">
+        <%= product.price %>
+      </div>
+    </li>
+  <% end %>
+</ul>
