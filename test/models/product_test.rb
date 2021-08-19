@@ -82,4 +82,24 @@ class ProductTest < ActiveSupport::TestCase
     assert product.invalid?
     assert_equal [I18n.translate('errors.messages.taken')], product.errors[:title]
   end
+
+  def new_product_two(title)
+    Product.new(title:       title,
+                description: "yyy",
+                price:       1,
+                image_url:   "zazu.jpg")
+  end
+
+  test "title must be at least 10 characters in length" do
+    ok = ['How to be Batman', '171: The Life, The Dream', 'Banana Yeah']
+    bad = ['Booya', 'Bonnie', '17169']
+
+    ok.each do |title|
+      assert new_product_two(title).valid?, "#{title} shouldn't be invalid"
+    end
+
+    bad.each do |title|
+      assert new_product_two(title).invalid?, "#{title} shouldn't be valid"
+    end
+  end
 end

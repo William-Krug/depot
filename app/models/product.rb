@@ -2,8 +2,9 @@ class Product < ApplicationRecord
   # Fields must be present
   validates :title, :description, :image_url, presence: true
 
-  # Title must be unique
-  validates :title, uniqueness: true
+  # Title must be unique and at least 10 characters long
+  validates :title, uniqueness: true, length: { minimum: 10,
+                                                message: "must be at least 10 characters in length" }
 
   # URL must end in .gif, .jpg, or .png
   validates :image_url, allow_blank: true, format: {
