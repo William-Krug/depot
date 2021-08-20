@@ -5,24 +5,30 @@
 <h1>Your Pragmatic Catalog</h1>
 
 <ul class="catalog">
-  <%# Display all products in the catalog %>
-  <% @products.each do |product| %>
-    <li>
-      <%# Product Image %>
-      <%= image_tag(product.image_url) %>
+  <%# Only update products that have changed %>
+  <% cache @products do %>
+    <%# Display all products in the catalog %>
+    <% @products.each do |product| %>
+      <%# Only update the changes to the product, not the entire product %>
+      <% cache product do %>
+        <li>
+          <%# Product Image %>
+          <%= image_tag(product.image_url) %>
 
-      <%# Product Title %>
-      <h2><%= product.title %></h2>
+          <%# Product Title %>
+          <h2><%= product.title %></h2>
 
-      <%# Product Description %>
-      <p>
-        <%= sanitize(product.description) %>
-      </p>
+          <%# Product Description %>
+          <p>
+            <%= sanitize(product.description) %>
+          </p>
 
-      <%# Product Price %>
-      <div class="price">
-        <%= number_to_currency(product.price) %>
-      </div>
-    </li>
+          <%# Product Price %>
+          <div class="price">
+            <%= number_to_currency(product.price) %>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
   <% end %>
 </ul>
