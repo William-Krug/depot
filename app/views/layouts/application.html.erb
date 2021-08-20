@@ -23,6 +23,9 @@
           <li><a href="/news">News</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
+        <div class="current-time">
+          <%= @current_time %>
+        </div>
       </nav>
       <main class='<%= controller.controller_name %>'>
         <%= yield %>
