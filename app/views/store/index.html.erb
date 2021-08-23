@@ -4,6 +4,10 @@
 
 <h1>Your Pragmatic Catalog</h1>
 
+<% if @index_count > 5 %>
+  <h2>You have viewed this page <%= "#{@index_count} " 'time'.pluralize(@index_count) %></h2>
+<% end %>
+
 <ul class="catalog">
   <%# Only update products that have changed %>
   <% cache @products do %>
