@@ -1,4 +1,5 @@
 module StoreIndexCounter
+  @index_count = 0
   
   private
 
@@ -6,7 +7,7 @@ module StoreIndexCounter
       @index_count = session[:index_counter]
 
       if session[:index_counter].nil?
-        session[:index_counter]= 1
+        session[:index_counter] = 1
       else
         session[:index_counter] = @index_count + 1
       end
