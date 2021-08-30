@@ -3,10 +3,11 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    @products = Product.all.order(:title)
   end
 
-  # GET /products/1 or /products/1.json
+  # GET /products/1
+  # GET /products/1.json
   def show
   end
 
@@ -19,7 +20,8 @@ class ProductsController < ApplicationController
   def edit
   end
 
-  # POST /products or /products.json
+  # POST /products
+  # POST /products.json
   def create
     @product = Product.new(product_params)
 
@@ -35,12 +37,16 @@ class ProductsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /products/1 or /products/1.json
+  # PATCH/PUT /products/1
+  # PATCH/PUT /products/1.json
   def update
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to @product, notice: "Product was successfully updated." }
         format.json { render :show, status: :ok, location: @product }
+
+        @products = Product.all.order(:title)
+        ActionCable.server.broadcast 'products', html: render_to_string('store/index', layout: false)
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -48,7 +54,8 @@ class ProductsController < ApplicationController
     end
   end
 
-  # DELETE /products/1 or /products/1.json
+  # DELETE /products/1
+  # DELETE /products/1.json
   def destroy
     @product.destroy
     respond_to do |format|
