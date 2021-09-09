@@ -32,15 +32,41 @@
       border-top: solid thin;
     }
   }
-  input[type='submit'] {
-    background-color: #888811;
-    border-radius: 0.354em;
-    border: solid thin #444411;
-    color: #ffffff;
-    font-size: 1em;
-    padding: 0.354em 1em;
+
+  .actions {
+    text-align: right;
+    form {
+      display: inline;
+      input[type='submit'] {
+        background-color: #888811;
+        border-radius: 0.354em;
+        border: solid thin #444411;
+        color: #ffffff;
+        font-size: 1em;
+        padding: 0.354em 1em;
+      }
+      input[type='submit']:hover {
+        background-color: #999922;
+      }
+      input[type='submit'].checkout {
+        background-color: #bbffbb;
+        color: #000000;
+        font-weight: bold;
+      }
+      input[type='submit'].checkout:hover {
+        background-color: #eeffee;
+      }
+    }
   }
-  input[type='submit']:hover {
-    background-color: #999922;
-  }
+  // input[type='submit'] {
+  //   background-color: #888811;
+  //   border-radius: 0.354em;
+  //   border: solid thin #444411;
+  //   color: #ffffff;
+  //   font-size: 1em;
+  //   padding: 0.354em 1em;
+  // }
+  // input[type='submit']:hover {
+  //   background-color: #999922;
+  // }
 }
