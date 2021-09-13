@@ -59,7 +59,9 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
-    @line_item.destroy
+    print('*** line_items_controller#destroy ***')
+
+    @line_item.destroy if @line_item
     respond_to do |format|
       format.html { redirect_to line_items_url, notice: "Line item was successfully destroyed." }
       format.json { head :no_content }
