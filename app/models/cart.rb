@@ -8,6 +8,11 @@ class Cart < ApplicationRecord
     else
       current_item = line_items.build(product_id: product.id)
     end
+    
+    if current_item.product_price.nil?
+      current_item.product_price = product.price
+    end
+    
     current_item
   end
 
