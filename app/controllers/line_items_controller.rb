@@ -51,7 +51,6 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       if @line_item.update(line_item_params)
         if @line_item.quantity == 0
-          puts('~~~ @line_item.quantity == 0 ~~~')
           @line_item.destroy
         end
         format.html { redirect_to store_index_url, notice: "Line item was successfully updated." }

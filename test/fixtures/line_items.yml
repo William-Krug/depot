@@ -3,7 +3,14 @@
 one:
   product: two
   cart: one
+  quantity: 2
 
 two:
   product: ruby
   order: one
+
+chatbot:
+  product: chatbot
+  cart: 171
+  quantity: 2
+  product_price: 38.00

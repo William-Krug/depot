@@ -17,7 +17,7 @@
       <% cache product do %>
         <li>
           <%# Product Image %>
-          <%= image_tag(product.image_url) %>
+          <%= link_to image_tag(product.image_url), line_items_path(product_id: product), method: :post, remote: true %>
 
           <%# Product Title %>
           <h2><%= product.title %></h2>
