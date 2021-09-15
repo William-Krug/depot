@@ -46,16 +46,16 @@ class LineItemsController < ApplicationController
   # PATCH/PUT /line_items/1.json
   def update
     @line_item.quantity -= 1
-    
-    if @line_item.quantity == 0
-      @line_item.destroy
-      redirect_to store_index_url
-      return
-    end
+    @cart = Cart.find(session[:cart_id])
 
     respond_to do |format|
       if @line_item.update(line_item_params)
+        if @line_item.quantity == 0
+          puts('~~~ @line_item.quantity == 0 ~~~')
+          @line_item.destroy
+        end
         format.html { redirect_to store_index_url, notice: "Line item was successfully updated." }
+        format.js
         format.json { render :show, status: :ok, location: @line_item }
       else
         format.html { render :edit, status: :unprocessable_entity }
