@@ -2,7 +2,7 @@ require "test_helper"
 
 class LineItemsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @line_item = line_items(:chatbot)
+    @line_item = line_items(:ruby)
   end
 
   test "should get index" do
@@ -36,18 +36,15 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # test "should update line_item" do
-    
-  #   assert_difference('@line_item.quantity') do
-  #     patch line_item_url(@line_item), params: { line_item: { product_id: @line_item.product_id } }
-  #   end
-  #   # follow_redirect!
+  test "should update line_item" do
+    @line_item.save
+    assert_difference('@line_item.quantity', -1) do
+      patch line_item_url(@line_item), params: { line_item: { product_id: @line_item.product_id } }
+      @line_item.reload
+    end
 
-  #   # assert_select 'td', '1'
-
-  #   # patch line_item_url(@line_item), params: { line_item: { product_id: @line_item.product_id } }
-  #   # assert_redirected_to line_item_url(@line_item)
-  # end
+    assert_redirected_to store_index_url
+  end
 
   test "should destroy line_item" do
     assert_difference('LineItem.count', -1) do
@@ -67,6 +64,12 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update line_item via ajax" do
-    
+    @line_item.save
+    assert_difference('@line_item.quantity', -1) do
+      patch line_item_url(@line_item), params: { line_item: { product_id: @line_item.product_id } }, xhr: true
+      @line_item.reload
+    end
+
+    assert_response :success
   end
 end

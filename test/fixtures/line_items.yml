@@ -9,8 +9,8 @@ two:
   product: ruby
   order: one
 
-chatbot:
-  product: chatbot
+ruby:
+  product: ruby
   cart: 171
   quantity: 2
   product_price: 38.00

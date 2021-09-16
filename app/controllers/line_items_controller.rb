@@ -1,6 +1,6 @@
 class LineItemsController < ApplicationController
   include CurrentCart
-  before_action :set_cart, only: [:create]
+  before_action :set_cart, only: [:create, :update]
   before_action :set_line_item, only: %i[ show edit update destroy ]
 
   # GET /line_items
@@ -46,7 +46,6 @@ class LineItemsController < ApplicationController
   # PATCH/PUT /line_items/1.json
   def update
     @line_item.quantity -= 1
-    @cart = Cart.find(session[:cart_id])
 
     respond_to do |format|
       if @line_item.update(line_item_params)
