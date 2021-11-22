@@ -5,7 +5,7 @@ class CreditCardPayType extends React.Component {
     return (
       <div>
         <div className="field">
-          <label htmlFor="order_credit_card_number">CC #</label>
+          <label htmlFor="order_credit_card_number">Credit Card #</label>
           <input
             type="password"
             name="order[credit_card_number]"
@@ -13,7 +13,7 @@ class CreditCardPayType extends React.Component {
           />
         </div>
         <div className="field">
-          <label htmlFor="order_expiration_date">Expiry</label>
+          <label htmlFor="order_expiration_date">Expiration Date</label>
           <input
             type="text"
             name="order[expiration_date]"
