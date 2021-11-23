@@ -62,4 +62,36 @@ class OrdersTest < ApplicationSystemTestCase
 
     assert_selector "#order_routing_number"
   end
+
+  test "credit card number" do
+    visit store_index_url
+    click_on 'Add to Cart', match: :first
+    click_on 'Checkout'
+
+    fill_in 'order_name', with: 'Bonnie Patterson'
+    fill_in 'order_address', with: '623 E. Gundersen Dr Apt 210 Carol Stream IL 60188'
+    fill_in 'order_email', with: 'bonnie@yesplease.com'
+
+    assert_no_selector "#order_credit_card_number"
+
+    select 'Credit Card', from: 'Pay type'
+
+    assert_selector "#order_credit_card_number"
+  end
+
+  test "purchase order number" do
+    visit store_index_url
+    click_on 'Add to Cart', match: :first
+    click_on 'Checkout'
+
+    fill_in 'order_name', with: 'Roxy Vixen'
+    fill_in 'order_address', with: '69171 Whispering Way'
+    fill_in 'order_email', with: 'boxxyroxy@wow.com'
+
+    assert_no_selector "#order_po_number"
+
+    select 'Purchase Order', from: 'Pay type'
+
+    assert_selector "#order_po_number"
+  end
 end
