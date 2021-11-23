@@ -14,3 +14,9 @@ ruby:
   cart: 171
   quantity: 2
   product_price: 38.00
+
+darwin:
+  product: ruby
+  cart: 69
+  quantity: 171
+  product_price: 38.00
