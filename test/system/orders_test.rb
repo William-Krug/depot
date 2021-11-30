@@ -14,9 +14,9 @@ class OrdersTest < ApplicationSystemTestCase
     visit orders_url
     click_on "New Order"
 
+    fill_in "Name", with: @order.name
     fill_in "Address", with: @order.address
     fill_in "Email", with: @order.email
-    fill_in "Name", with: @order.name
     fill_in "Pay type", with: @order.pay_type
     click_on "Create Order"
 
@@ -28,11 +28,11 @@ class OrdersTest < ApplicationSystemTestCase
     visit orders_url
     click_on "Edit", match: :first
 
+    fill_in "Name", with: @order.name
     fill_in "Address", with: @order.address
     fill_in "Email", with: @order.email
-    fill_in "Name", with: @order.name
-    fill_in "Pay type", with: @order.pay_type
-    click_on "Update Order"
+    # fill_in "Pay type", with: @order.pay_type  #React component only loads on page reload
+    click_on "Place Order"
 
     assert_text "Order was successfully updated"
     click_on "Back"
